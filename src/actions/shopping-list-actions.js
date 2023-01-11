@@ -11,3 +11,9 @@ export const shoppingListLoadSuccessAction = (shoppingList) => {
     shoppingList,
   };
 };
+
+export const shoppingListLoadStartAction = () => {
+  return {
+    type: 'shopping-list-load-start',
+  };
+};

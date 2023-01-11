@@ -3,7 +3,7 @@ import ShoppingList from '../ShoppingList/ShoppingList';
 import { useContext, useEffect } from 'react';
 
 import { createShoppingListItem, getShoppingListItems } from '../../services/shopping-list-items.js';
-import { shoppingListBodyChange, shoppingListLoadSuccessAction } from '../../actions/shopping-list-actions.js';
+import { shoppingListBodyChange, shoppingListLoadStartAction, shoppingListLoadSuccessAction } from '../../actions/shopping-list-actions.js';
 import ShoppingListForm from '../ShoppingList/ShoppingListForm';
 import { getListEffect } from '../../effects/shopping-list-effects';
 
@@ -12,6 +12,7 @@ export default function ShoppingListPage() {
 // main page for managing the state of the other components
   useEffect(() => {
     (async () => {
+      dispatch(shoppingListLoadStartAction());
       const items = await getShoppingListItems();
       console.log('items', items);
       const action = shoppingListLoadSuccessAction(items)
@@ -33,7 +34,7 @@ export default function ShoppingListPage() {
         getListEffect(dispatch);
         dispatch(shoppingListBodyChange(''));
       }} />
- 
-    <ShoppingList shoppingList={state.shoppingList} />
+    {state.loadingMode === 'loading' ? <span>Loading...</span> : <ShoppingList shoppingList={state.shoppingList} />}
+    
   </>;
 }
