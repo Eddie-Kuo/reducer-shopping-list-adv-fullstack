@@ -17,3 +17,16 @@ export const shoppingListLoadStartAction = () => {
     type: 'shopping-list-load-start',
   };
 };
+export const shoppingListLoadErrorAction = (error) => {
+  return {
+    type: 'shopping-list-load-error',
+    error,
+  };
+};
+
+export const shoppingItemBodyChanged = (itemBody) => {
+  return {
+    type: 'shopping-item-body-changed',
+    itemBody,
+  };
+};
