@@ -1,9 +1,9 @@
-export const shoppingListBodyChange = (item) => {
-  return {
-    item,
-    type: 'text-body-changed',
-  };
-};
+// export const shoppingListBodyChange = (item) => {
+//   return {
+//     item,
+//     type: 'text-body-changed',
+//   };
+// };
 
 export const shoppingListLoadSuccessAction = (shoppingList) => {
   return {

@@ -9,7 +9,7 @@ import { getItemsEffect } from '../../effects/shopping-list-effects';
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
-// main page for managing the state of the other components
+  // main page for managing the state of the other components
   useEffect(() => {
     getItemsEffect(dispatch);
   }, []);
@@ -18,15 +18,17 @@ export default function ShoppingListPage() {
     <h1>My Shopping List</h1>
     <ShoppingListForm 
       item={state.itemBody}
-      onBodyChange={(item)=> {
+      onBodyChange={(item) => {
         dispatch(shoppingItemBodyChanged(item));
       }}
       onSubmit={async (item) => {
         await createShoppingListItem(item);
         getItemsEffect(dispatch);
-        // dispatch(shoppingListBodyChange(''));
+        dispatch(shoppingItemBodyChanged(''));
       }} />
-    {state.loadingMode === 'loading' ? <span>Loading...</span> : <ShoppingList shoppingList={state.shoppingList} />}
+    {state.loadingMode === 'loading' ? 
+      <span>Loading...</span> : 
+      <ShoppingList shoppingList={state.shoppingList} />}
     
   </>;
 }
