@@ -30,3 +30,11 @@ export const shoppingItemBodyChanged = (itemBody) => {
     itemBody,
   };
 };
+
+export const handleDoneItem = (itemId, done) => {
+  return {
+    itemId,
+    done,
+    type: 'shopping-item-marked-done',
+  };
+};

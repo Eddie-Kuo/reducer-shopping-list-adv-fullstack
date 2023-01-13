@@ -2,8 +2,8 @@ import { Context } from '../../ShoppingListProvider';
 import ShoppingList from '../ShoppingList/ShoppingList';
 import { useContext, useEffect } from 'react';
 
-import { createShoppingListItem, getShoppingListItems } from '../../services/shopping-list-items.js';
-import { shoppingItemBodyChanged, shoppingListBodyChange } from '../../actions/shopping-list-actions.js';
+import { createShoppingListItem, getShoppingListItems, updateShoppingItem } from '../../services/shopping-list-items.js';
+import { handleDoneItem, shoppingItemBodyChanged, shoppingListBodyChange } from '../../actions/shopping-list-actions.js';
 import ShoppingListForm from '../ShoppingList/ShoppingListForm';
 import { getItemsEffect } from '../../effects/shopping-list-effects';
 
@@ -13,6 +13,12 @@ export default function ShoppingListPage() {
   useEffect(() => {
     getItemsEffect(dispatch);
   }, []);
+
+  const handleDone = async (itemId, done) => {
+    const items = await updateShoppingItem(itemId, done);
+    dispatch(handleDoneItem(items));
+    getItemsEffect(dispatch);
+  };
 
   return <>
     <h1>My Shopping List</h1>
@@ -28,7 +34,11 @@ export default function ShoppingListPage() {
       }} />
     {state.loadingMode === 'loading' ? 
       <span>Loading...</span> : 
-      <ShoppingList shoppingList={state.shoppingList} />}
+      <ShoppingList 
+        shoppingList={state.shoppingList} 
+        handleDone={(itemId, done) => {
+          handleDone(itemId, done);
+        }} />}
     
   </>;
 }

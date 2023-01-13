@@ -8,11 +8,26 @@ export const initialState = () => {
     shoppingList: [],
     loadingMode: 'at-rest',
     loadingError: null,
+    // done: false,
   };
 };
 
 export const reducer = (state, action) => {
   switch (action.type) {
+    case 'shopping-item-marked-done':
+      // {
+      //   const shoppingList = [...state.shoppingList];
+      //   const index = shoppingList.findIndex(
+      //     (item) => item.id === action.itemId
+      //   );
+      //   shoppingList[index] = {
+      //     ...shoppingList[index],
+      //     done: action.done,
+      //   };
+      return {
+        ...state,
+        done: true,
+      };
     case 'shopping-item-body-changed':
       return {
         ...state,

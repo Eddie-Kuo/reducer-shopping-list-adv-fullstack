@@ -35,11 +35,11 @@ export async function createShoppingListItem(item) {
   return checkError(response);
 }
 
-export async function updateShoppingItem(shoppingItemId, fields) {
+export async function updateShoppingItem(shoppingItemId, done) {
   const response = await client
     .from('anon-shopping-list-items')
     .update({
-      ...fields,
+      done,
     })
     .eq('id', shoppingItemId);
   return checkError(response);
