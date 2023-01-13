@@ -2,10 +2,14 @@ import { Context } from '../../ShoppingListProvider';
 import ShoppingList from '../ShoppingList/ShoppingList';
 import { useContext, useEffect } from 'react';
 
-import { createShoppingListItem, getShoppingListItems, updateShoppingItem } from '../../services/shopping-list-items.js';
-import { handleDoneItem, shoppingItemBodyChanged, shoppingListBodyChange } from '../../actions/shopping-list-actions.js';
+import { createShoppingListItem, 
+  updateShoppingItem } from '../../services/shopping-list-items.js';
+import { handleDoneItem, 
+  shoppingItemBodyChanged, 
+} from '../../actions/shopping-list-actions.js';
 import ShoppingListForm from '../ShoppingList/ShoppingListForm';
 import { getItemsEffect } from '../../effects/shopping-list-effects';
+import DeleteButton from '../DeleteButton';
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
@@ -19,6 +23,7 @@ export default function ShoppingListPage() {
     dispatch(handleDoneItem(items));
     getItemsEffect(dispatch);
   };
+
 
   return <>
     <h1>My Shopping List</h1>
@@ -38,7 +43,9 @@ export default function ShoppingListPage() {
         shoppingList={state.shoppingList} 
         handleDone={(itemId, done) => {
           handleDone(itemId, done);
-        }} />}
+        }} 
+      />}
+    <DeleteButton />
     
   </>;
 }

@@ -8,7 +8,7 @@ export const initialState = () => {
     shoppingList: [],
     loadingMode: 'at-rest',
     loadingError: null,
-    // done: false,
+    done: false,
   };
 };
 

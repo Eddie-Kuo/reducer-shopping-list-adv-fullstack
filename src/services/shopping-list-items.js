@@ -52,3 +52,11 @@ export async function deleteShoppingItem(shoppingItemId) {
     .eq('id', shoppingItemId);
   return checkError(response);
 }
+
+export async function deleteShoppingItems(shoppingItemId) {
+  const response = await client
+    .from('anon-shopping-list-items')
+    .delete('*')
+    .eq('id', shoppingItemId);
+  return checkError(response);
+}
