@@ -15,11 +15,4 @@ describe('shopping-list-item-reducer', () => {
     );
     expect(newState.itemBody).toEqual('almonds');
   });
-  test('marking items as done', () => {
-    const oldState = {
-      ...initialState(),
-    };
-    const newState = reducer(oldState, handleDoneItem(10, true));
-    expect(newState.done).toEqual(true);
-  });
 });

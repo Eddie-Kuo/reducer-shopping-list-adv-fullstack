@@ -8,26 +8,39 @@ export const initialState = () => {
     shoppingList: [],
     loadingMode: 'at-rest',
     loadingError: null,
-    done: false,
+    // done: false,
   };
 };
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case 'shopping-item-marked-done':
-      // {
-      //   const shoppingList = [...state.shoppingList];
-      //   const index = shoppingList.findIndex(
-      //     (item) => item.id === action.itemId
-      //   );
-      //   shoppingList[index] = {
-      //     ...shoppingList[index],
-      //     done: action.done,
-      //   };
+    case 'shopping-item-delete': {
+      const shoppingListCopy = [...state.shoppingList];
+      const newShoppingList = shoppingListCopy.filter(
+        (item) => item.id !== action.itemId
+      );
+      console.log('SHOPPINGLIST', newShoppingList);
+
       return {
         ...state,
-        done: true,
+        shoppingList: newShoppingList,
       };
+    }
+    case 'shopping-item-marked-done': {
+      const shoppingListCopy = [...state.shoppingList];
+      const index = shoppingListCopy.findIndex(
+        (item) => item.id === action.itemId
+      );
+      const updatedItem = {
+        ...shoppingListCopy[index],
+        done: action.done,
+      };
+      shoppingListCopy[index] = updatedItem;
+      return {
+        ...state,
+        shoppingList: shoppingListCopy,
+      };
+    }
     case 'shopping-item-body-changed':
       return {
         ...state,

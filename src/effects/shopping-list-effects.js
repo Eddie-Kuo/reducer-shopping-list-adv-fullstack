@@ -10,7 +10,7 @@ export const getItemsEffect = async (dispatch) => {
   try {
     const items = await getShoppingListItems();
     dispatch(shoppingListLoadSuccessAction(items));
-    console.log('item', items);
+    // console.log('item', items);
   } catch (error) {
     dispatch(shoppingListLoadErrorAction(error));
   }

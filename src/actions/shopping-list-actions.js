@@ -17,6 +17,7 @@ export const shoppingListLoadStartAction = () => {
     type: 'shopping-list-load-start',
   };
 };
+
 export const shoppingListLoadErrorAction = (error) => {
   return {
     type: 'shopping-list-load-error',
@@ -36,5 +37,12 @@ export const handleDoneItem = (itemId, done) => {
     itemId,
     done,
     type: 'shopping-item-marked-done',
+  };
+};
+
+export const deleteShoppingItemAction = (itemId) => {
+  return {
+    itemId,
+    type: 'shopping-item-delete',
   };
 };

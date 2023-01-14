@@ -2,7 +2,9 @@ import ShoppingItem from './ShoppingItem';
 
 export default function ShoppingList({ 
   shoppingList, 
-  handleDone }) {
+  handleDone,
+  handleDelete 
+}) {
   return (
     <ol>
       {shoppingList.map(item => {
@@ -10,6 +12,7 @@ export default function ShoppingList({
           <ShoppingItem item={item} handleDone={(done) => {
             handleDone(item.id, done);
           }}
+          handleDelete={handleDelete}
           />
         </li>;
       })}

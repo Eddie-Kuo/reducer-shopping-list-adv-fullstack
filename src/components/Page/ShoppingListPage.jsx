@@ -3,13 +3,14 @@ import ShoppingList from '../ShoppingList/ShoppingList';
 import { useContext, useEffect } from 'react';
 
 import { createShoppingListItem, 
+  deleteShoppingItem, 
   updateShoppingItem } from '../../services/shopping-list-items.js';
-import { handleDoneItem, 
+import { deleteShoppingItemAction, handleDoneItem, 
   shoppingItemBodyChanged, 
 } from '../../actions/shopping-list-actions.js';
 import ShoppingListForm from '../ShoppingList/ShoppingListForm';
 import { getItemsEffect } from '../../effects/shopping-list-effects';
-import DeleteButton from '../DeleteButton';
+// import DeleteButton from '../DeleteButton';
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
@@ -19,9 +20,14 @@ export default function ShoppingListPage() {
   }, []);
 
   const handleDone = async (itemId, done) => {
-    const items = await updateShoppingItem(itemId, done);
-    dispatch(handleDoneItem(items));
-    getItemsEffect(dispatch);
+    await updateShoppingItem(itemId, done);
+    dispatch(handleDoneItem(itemId, done));
+    // getItemsEffect(dispatch);
+  };
+
+  const handleDelete = async (itemId) => {
+    await deleteShoppingItem(itemId);
+    dispatch(deleteShoppingItemAction(itemId));
   };
 
 
@@ -43,9 +49,11 @@ export default function ShoppingListPage() {
         shoppingList={state.shoppingList} 
         handleDone={(itemId, done) => {
           handleDone(itemId, done);
-        }} 
+        }}
+        handleDelete={(itemId) => {
+          handleDelete(itemId);
+        }}
       />}
-    <DeleteButton />
-    
+  
   </>;
 }
