@@ -1,14 +1,9 @@
 export const initialState = () => {
   return {
-    // shoppingList: [
-    //   { id: '1', item: 'apples' },
-    //   { id: '2', item: 'bananas' },
-    // ],
     itemBody: '',
     shoppingList: [],
     loadingMode: 'at-rest',
     loadingError: null,
-    // done: false,
   };
 };
 
@@ -19,8 +14,6 @@ export const reducer = (state, action) => {
       const newShoppingList = shoppingListCopy.filter(
         (item) => item.id !== action.itemId
       );
-      console.log('SHOPPINGLIST', newShoppingList);
-
       return {
         ...state,
         shoppingList: newShoppingList,

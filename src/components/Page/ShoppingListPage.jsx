@@ -10,7 +10,6 @@ import { deleteShoppingItemAction, handleDoneItem,
 } from '../../actions/shopping-list-actions.js';
 import ShoppingListForm from '../ShoppingList/ShoppingListForm';
 import { getItemsEffect } from '../../effects/shopping-list-effects';
-// import DeleteButton from '../DeleteButton';
 
 export default function ShoppingListPage() {
   const { state, dispatch } = useContext(Context);
@@ -22,7 +21,6 @@ export default function ShoppingListPage() {
   const handleDone = async (itemId, done) => {
     await updateShoppingItem(itemId, done);
     dispatch(handleDoneItem(itemId, done));
-    // getItemsEffect(dispatch);
   };
 
   const handleDelete = async (itemId) => {

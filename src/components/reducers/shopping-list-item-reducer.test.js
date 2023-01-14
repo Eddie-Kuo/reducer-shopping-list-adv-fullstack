@@ -1,7 +1,4 @@
-import {
-  handleDoneItem,
-  shoppingItemBodyChanged,
-} from '../../actions/shopping-list-actions';
+import { shoppingItemBodyChanged } from '../../actions/shopping-list-actions';
 import { reducer, initialState } from './shopping-list-reducer';
 
 describe('shopping-list-item-reducer', () => {
